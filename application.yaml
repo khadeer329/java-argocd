@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     # Replace with your GitHub repository URL after pushing the project.
-    repoURL: https://github.com/YOUR_GITHUB_USERNAME/java-argocd-landing-app.git
+    repoURL: https://github.com/khadeer329/java-argocd.git
     targetRevision: main
     path: k8s
   destination:
