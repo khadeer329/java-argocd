@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: java-landing-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    # Replace with your GitHub repository URL after pushing the project.
+    repoURL: https://github.com/YOUR_GITHUB_USERNAME/java-argocd-landing-app.git
+    targetRevision: main
+    path: k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: java-landing
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
