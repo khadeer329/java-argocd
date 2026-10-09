@@ -17,7 +17,7 @@ spec:
       containers:
         - name: java-landing-app
           # Replace DOCKERHUB_USERNAME with your Docker Hub username.
-          image: DOCKERHUB_USERNAME/java-argocd-landing-app:1.0.0
+          image: khadeershaik/java-landing-app:latest
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
