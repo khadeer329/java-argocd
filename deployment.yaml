@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-landing-app
+  labels:
+    app: java-landing-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: java-landing-app
+  template:
+    metadata:
+      labels:
+        app: java-landing-app
+    spec:
+      containers:
+        - name: java-landing-app
+          # Replace DOCKERHUB_USERNAME with your Docker Hub username.
+          image: DOCKERHUB_USERNAME/java-argocd-landing-app:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: http
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 20
+          resources:
+            requests:
+              cpu: 100m
+              memory: 192Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
